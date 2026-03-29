@@ -9,11 +9,11 @@ public static class MovieEndpoints
     {
         var group = app.MapGroup("/movies");
 
-        group.MapGet("/", GetMovies).AllowAnonymous();
-        group.MapGet("/{id:int}", GetMovieById).AllowAnonymous();
-        group.MapPost("/", CreateMovie).RequireAuthorization("AuthenticatedUserPolicy");
-        group.MapPut("/{id:int}", UpdateMovie).RequireAuthorization("AuthenticatedUserPolicy");
-        group.MapDelete("/{id:int}", DeleteMovie).RequireAuthorization("AuthenticatedUserPolicy");
+        group.MapGet("/", GetMovies);
+        group.MapGet("/{id:int}", GetMovieById);
+        group.MapPost("/", CreateMovie);
+        group.MapPut("/{id:int}", UpdateMovie);
+        group.MapDelete("/{id:int}", DeleteMovie);
     }
 
     private static IResult GetMovies(IMovieService movieService)

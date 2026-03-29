@@ -7,13 +7,13 @@ using MovieLibrary.UI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ITokenProvider, TokenProvider>();
+
+//TODO: Register HttpContextAccessor and ITokenProvider
 
 // HttpClient for the Movie Library API
 builder.Services.AddHttpClient<IMovieApiService, MovieApiService>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]!);
+    client.BaseAddress = new Uri("https://localhost:5002/");
 });
 
 // Cookie + OIDC authentication
@@ -25,12 +25,12 @@ builder.Services.AddAuthentication(options =>
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
-        options.Authority = builder.Configuration["IdentityServer:Authority"];
+        options.Authority = "https://localhost:5001";
         options.ClientId = "movielibrary.ui";
         options.ClientSecret = "ui-client-secret";
         options.ResponseType = OpenIdConnectResponseType.Code;
-        options.UsePkce = true;
-        options.SaveTokens = true; // saves access_token in cookie so we can use it for API calls
+        
+        //TODO: Add options to save access token
 
         options.Scope.Add("openid");
         options.Scope.Add("profile");

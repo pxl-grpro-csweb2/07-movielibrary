@@ -46,10 +46,6 @@ public class LoginModel : PageModel
             var user = _users.FindByUsername(Username)!;
 
             var claims = user.Claims.ToList();
-            if (!claims.Any(claim => claim.Type == "sub"))
-            {
-                claims.Add(new Claim("sub", user.SubjectId));
-            }
 
             var identity = new ClaimsIdentity(
                 claims,
@@ -65,13 +61,6 @@ public class LoginModel : PageModel
                 new AuthenticationProperties { IsPersistent = false });
 
             if (context != null)
-            {
-                return Redirect(ReturnUrl);
-            }
-
-            if (Url.IsLocalUrl(ReturnUrl)
-                && !string.Equals(ReturnUrl, "/", StringComparison.Ordinal)
-                && !string.Equals(ReturnUrl, "~/", StringComparison.Ordinal))
             {
                 return Redirect(ReturnUrl);
             }

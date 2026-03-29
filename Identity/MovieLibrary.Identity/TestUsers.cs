@@ -15,6 +15,7 @@ public static class TestUsers
             Password = "alice",
             Claims =
             [
+                new Claim("sub", "1"),
                 new Claim(JwtClaimTypes.Name, "Alice Smith"),
                 new Claim(JwtClaimTypes.Email, "alice@example.com"),
                 new Claim(JwtClaimTypes.Role, "admin")
@@ -27,6 +28,7 @@ public static class TestUsers
             Password = "bob",
             Claims =
             [
+                new Claim("sub", "2"),
                 new Claim(JwtClaimTypes.Name, "Bob Jones"),
                 new Claim(JwtClaimTypes.Email, "bob@example.com"),
                 new Claim(JwtClaimTypes.Role, "user")

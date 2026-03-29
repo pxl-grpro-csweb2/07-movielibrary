@@ -45,28 +45,10 @@ builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 
-// JWT Bearer authentication validated against Duende IdentityServer
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = builder.Configuration["IdentityServer:Authority"];
-        options.Audience = "movielibrary.api";
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateAudience = true,
-            NameClaimType = "name",
-            RoleClaimType = "role"
-        };
-    });
+//TODO: JWT authentication
 
-// Authorization policies
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AuthenticatedUserPolicy", policy =>
-        policy.RequireAuthenticatedUser());
-    options.AddPolicy("AdminPolicy", policy =>
-        policy.RequireRole("admin"));
-});
+//TODO: Authorization policies
+
 
 var app = builder.Build();
 
@@ -80,8 +62,8 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//TODO: Add authentication and authorization middleware
+
 
 app.MapGenreEndpoints();
 app.MapMovieEndpoints();
