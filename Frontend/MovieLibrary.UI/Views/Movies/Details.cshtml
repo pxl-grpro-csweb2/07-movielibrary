@@ -1,0 +1,20 @@
+@model MovieLibrary.UI.Models.MovieViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Titel</dt>
+    <dd class="col-sm-9">@Model.Title</dd>
+
+    <dt class="col-sm-3">Jaar</dt>
+    <dd class="col-sm-9">@Model.ReleaseYear</dd>
+
+    <dt class="col-sm-3">Genre</dt>
+    <dd class="col-sm-9">@Model.GenreName</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Terug</a>

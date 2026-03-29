@@ -1,0 +1,39 @@
+@model IEnumerable<MovieLibrary.UI.Models.MovieViewModel>
+
+@{
+    ViewData["Title"] = "Films";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Films</h2>
+    <a asp-action="Create" class="btn btn-primary">Nieuwe film</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Jaar</th>
+            <th>Genre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.ReleaseYear</td>
+                <td>@movie.GenreName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm btn-outline-secondary">Details</a>
+                    <form asp-action="Delete" asp-route-id="@movie.Id" method="post" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('Film verwijderen?')">Verwijderen</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

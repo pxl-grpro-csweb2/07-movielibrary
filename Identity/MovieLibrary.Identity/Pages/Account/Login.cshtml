@@ -1,0 +1,20 @@
+@page
+@model LoginModel
+<h1>Aanmelden</h1>
+
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <div class="error">@Model.Error</div>
+}
+
+<form method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+
+    <label asp-for="Username">Gebruikersnaam</label>
+    <input type="text" asp-for="Username" autocomplete="username" />
+
+    <label asp-for="Password">Wachtwoord</label>
+    <input type="password" asp-for="Password" autocomplete="current-password" />
+
+    <button type="submit">Aanmelden</button>
+</form>

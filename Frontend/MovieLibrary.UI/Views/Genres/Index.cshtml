@@ -1,0 +1,26 @@
+@model IEnumerable<MovieLibrary.UI.Models.GenreViewModel>
+
+@{
+    ViewData["Title"] = "Genres";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Genres</h2>
+    <a asp-action="Create" class="btn btn-primary">Nieuw genre</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Naam</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var genre in Model)
+        {
+            <tr>
+                <td>@genre.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

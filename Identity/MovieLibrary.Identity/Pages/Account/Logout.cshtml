@@ -1,0 +1,8 @@
+@page
+@model LogoutModel
+<h1>Afgemeld</h1>
+<p>Je bent succesvol afgemeld.</p>
+@if (!string.IsNullOrEmpty(Model.PostLogoutRedirectUri))
+{
+    <p><a href="@Model.PostLogoutRedirectUri">Terug naar de applicatie</a></p>
+}

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Movie Library";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Movie Library</h1>
+    <p>Welkom bij de Movie Library applicatie.</p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <p>Ingelogd als: <strong>@User.Identity.Name</strong></p>
+        <a asp-controller="Movies" asp-action="Index" class="btn btn-primary me-2">Films bekijken</a>
+        <a asp-controller="Genres" asp-action="Index" class="btn btn-outline-primary">Genres bekijken</a>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Aanmelden</a>
+    }
+</div>

@@ -1,0 +1,38 @@
+@model MovieLibrary.UI.Models.MovieViewModel
+
+@{
+    ViewData["Title"] = "Nieuwe film";
+}
+
+<h2>Nieuwe film toevoegen</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Titel</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ReleaseYear" class="form-label">Jaar</label>
+        <input asp-for="ReleaseYear" class="form-control" type="number" />
+        <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GenreId" class="form-label">Genre</label>
+        <select asp-for="GenreId" class="form-select">
+            <option value="">-- Kies een genre --</option>
+            @foreach (var genre in (IEnumerable<MovieLibrary.Domain.Entities.Genre>)ViewBag.Genres)
+            {
+                <option value="@genre.Id">@genre.Name</option>
+            }
+        </select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Opslaan</button>
+    <a asp-action="Index" class="btn btn-secondary">Annuleren</a>
+</form>
